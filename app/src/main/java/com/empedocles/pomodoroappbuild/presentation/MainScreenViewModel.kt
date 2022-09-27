@@ -1,6 +1,7 @@
 package com.empedocles.pomodoroappbuild.presentation
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.empedocles.pomodoroappbuild.util.MinuteConstants
@@ -14,12 +15,15 @@ class MainScreenViewModel : ViewModel() {
     var currentTime = mutableStateOf(totalTime.value)
     var selectedTimeMethod = mutableStateOf(TimeStringConstants.POMODORO)
     var isTimerRunning = mutableStateOf(false)
+    var arcValue = mutableStateOf(1f)
+    var arcSize = mutableStateOf(IntSize.Zero)
 
     fun runTimer() {
         viewModelScope.launch {
             while (isTimerRunning.value && currentTime.value >= 0) {
                 currentTime.value -= 100L
                 delay(100L)
+                arcValue.value = currentTime.value.toFloat() / totalTime.value.toFloat()
             }
         }
     }
@@ -45,5 +49,7 @@ class MainScreenViewModel : ViewModel() {
             TimeStringConstants.SHORT_BREAK -> totalTime.value = MinuteConstants.SHORT_BREAK_MINUTE
         }
         currentTime.value = totalTime.value
+        arcValue.value = currentTime.value.toFloat() / totalTime.value.toFloat()
+
     }
 }

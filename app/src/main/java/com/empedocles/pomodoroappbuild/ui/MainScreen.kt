@@ -1,17 +1,11 @@
 package com.empedocles.pomodoroappbuild.ui
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.empedocles.pomodoroappbuild.presentation.MainScreenViewModel
 import com.empedocles.pomodoroappbuild.util.TimeStringConstants
-import com.empedocles.pomodoroappbuild.util.timeStamp
 
 @Composable
 fun MainScreen(viewModel: MainScreenViewModel) {
@@ -56,8 +49,7 @@ fun MainScreen(viewModel: MainScreenViewModel) {
 
         }
 
-        // TODO Canvas, DrawArc
-        Text(text = viewModel.getLongToTimeStamp())
+        TimerArc(viewModel = viewModel)
 
         Text(
             letterSpacing = 13.sp,
