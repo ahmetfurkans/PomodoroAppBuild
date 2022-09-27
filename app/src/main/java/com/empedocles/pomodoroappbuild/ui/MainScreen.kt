@@ -56,10 +56,11 @@ fun MainScreen(viewModel: MainScreenViewModel) {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFFD7E0FF),
-            text = if (viewModel.isTimerRunning.value) "STOP" else "START",
+            text = if (viewModel.isTimerRunning.value && viewModel.currentTime.value > 0L) "STOP"
+            else if (!viewModel.isTimerRunning.value && viewModel.currentTime.value >= 0L) "Start"
+            else "Restart",
             modifier = Modifier.clickable {
                 viewModel.startStop()
-                println(viewModel.isTimerRunning.value)
             })
 
         SettingsButton(context = context)

@@ -30,9 +30,17 @@ class MainScreenViewModel : ViewModel() {
 
     fun startStop(){
         isTimerRunning.value = !isTimerRunning.value
+
         if(isTimerRunning.value){
             runTimer()
         }
+        if(currentTime.value <= 0L){
+            isTimerRunning.value = true
+            currentTime.value = totalTime.value
+            arcValue.value = currentTime.value.toFloat() / totalTime.value.toFloat()
+            runTimer()
+        }
+
     }
 
     fun getLongToTimeStamp() : String{
