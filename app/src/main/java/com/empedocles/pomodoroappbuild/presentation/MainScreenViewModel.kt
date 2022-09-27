@@ -28,13 +28,13 @@ class MainScreenViewModel : ViewModel() {
         }
     }
 
-    fun startStop(){
+    fun startStop() {
         isTimerRunning.value = !isTimerRunning.value
 
-        if(isTimerRunning.value){
+        if (isTimerRunning.value) {
             runTimer()
         }
-        if(currentTime.value <= 0L){
+        if (currentTime.value <= 0L) {
             isTimerRunning.value = true
             currentTime.value = totalTime.value
             arcValue.value = currentTime.value.toFloat() / totalTime.value.toFloat()
@@ -43,15 +43,15 @@ class MainScreenViewModel : ViewModel() {
 
     }
 
-    fun getLongToTimeStamp() : String{
+    fun getLongToTimeStamp(): String {
         return currentTime.value.timeStamp()
     }
 
-    fun changeTimeMethod(timeMethod: String){
+    fun changeTimeMethod(timeMethod: String) {
         isTimerRunning.value = false
         selectedTimeMethod.value = timeMethod
 
-        when(selectedTimeMethod.value){
+        when (selectedTimeMethod.value) {
             TimeStringConstants.POMODORO -> totalTime.value = MinuteConstants.POMODORO_MINUTE
             TimeStringConstants.LONG_BREAK -> totalTime.value = MinuteConstants.LONG_BREAK_MINUTE
             TimeStringConstants.SHORT_BREAK -> totalTime.value = MinuteConstants.SHORT_BREAK_MINUTE
