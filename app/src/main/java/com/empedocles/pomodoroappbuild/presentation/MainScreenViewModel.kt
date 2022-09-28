@@ -40,7 +40,6 @@ class MainScreenViewModel : ViewModel() {
             arcValue.value = currentTime.value.toFloat() / totalTime.value.toFloat()
             runTimer()
         }
-
     }
 
     fun getLongToTimeStamp(): String {
